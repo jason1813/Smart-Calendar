@@ -1,0 +1,72 @@
+body {
+    background-color: hsl(0, 0%, 14%);
+    color: white;
+    margin:0;
+    padding:0;
+    overflow: visible;
+}
+
+html {
+    margin:0;
+    padding:0;
+}
+
+
+/* top TABS STUFF */
+ul.toptabs {
+    position: fixed;
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    border: 1px solid #8c8c8c;
+    background-color: #666666;
+    width: 100%;
+}
+
+/* Float the list items side by side */
+ul.toptabs li {float: left;}
+
+/* Style the links inside the list items */
+ul.toptabs li a {
+    display: inline-block;
+    color: white;
+    text-align: center;
+    padding: 14px 16px;
+    text-decoration: none;
+    transition: 0.3s;
+    font-size: 17px;
+}
+
+/* Change background color of links on hover */
+ul.toptabs li a:hover {background-color: #ddd;}
+
+#active {
+    background-color: #333333;
+}
+
+/*Content stuff*/
+div.content {
+    display: block;
+    position: absolute;
+    left: 20px;
+    top: 55px;
+    z-index: -1;
+    overflow: auto;
+}
+
+/*h2 content style*/
+div.content h2 {
+    font-size: 40px;
+}
+
+/*h3 content style*/
+div.content h3 {
+    padding-top: 50px;
+    font-size: 35px;
+    line-height: 10%;
+}
+
+/*paragraph content style*/
+div.content p {
+    color: hsl(0, 0%, 88%);
+}
