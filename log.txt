@@ -1,0 +1,16 @@
+using remote desktop to Raspberry Pi:
+https://www.youtube.com/watch?v=V2mCmNC948E
+
+on Raspberry Pi:
+	If apt -get install...
+doesn't work then try:
+	sudo apt-get install...
+
+for installing chromium:
+https://ubuntu-mate.community/t/tutorial-install-working-chromium-50/6762
+
+exit out of kiosk:
+ctrl+shift+w
+
+unlocking file:
+right click file -> properties -> permissions -> access: read and write
