@@ -1,7 +1,6 @@
 import os
 
-#os.system("chromium-browser --kiosk file:///home/jason/Documents/Smart_Calendar/Smart_HTML/Calendar.html &") #unix command to open chromium in a new process in kiosk mode, opens html file on my desktop
-os.system("chromium-browser --kiosk file://`pwd`/../Smart_HTML/Calendar.html &")
+os.system("chromium-browser --kiosk file://`pwd`/../Smart_HTML/Calendar.html &")#unix command to open chromium in a new process in kiosk mode, opens html file on my desktop
 
 fifoname = 'pipe'
 
