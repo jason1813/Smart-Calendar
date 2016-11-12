@@ -70,3 +70,39 @@ div.content h3 {
 div.content p {
     color: hsl(0, 0%, 88%);
 }
+
+
+/*SlideShow styling below*/
+.mySlides {
+  display:none;
+-webkit-animation:fade 1s;
+-moz-animation:fade 1s;
+animation:fade 1s;
+}
+
+@-webkit-keyframes fade {
+        0% {
+                opacity:0.1;
+        }
+        100% {
+                opacity:1;
+        }
+}
+
+@-moz-keyframes fade {
+        0% {
+                opacity:0.1;
+        }
+        100% {
+                opacity:1;
+        }
+}
+
+@keyframes fade {
+        0% {
+                opacity:0.1;
+        }
+        100% {
+                opacity:1;
+        }
+}
