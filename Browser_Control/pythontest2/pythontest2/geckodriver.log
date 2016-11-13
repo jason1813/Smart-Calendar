@@ -1,7 +1,0 @@
-1479000742415	geckodriver	INFO	Listening on 127.0.0.1:53164
-1479000744384	mozprofile::profile	INFO	Using profile path C:\Users\iJason\AppData\Local\Temp\rust_mozprofile.mWLzFw8XyWLb
-1479000744391	geckodriver::marionette	INFO	Starting browser C:\Program Files (x86)\Mozilla Firefox\Firefox.exe
-1479000744408	geckodriver::marionette	INFO	Connecting to Marionette on localhost:53171
-1479000745417	Marionette	INFO	Listening on port 53171
-1479000746570	Marionette	INFO	startBrowser dd54099a-41c8-4615-be78-ea0cb7d1dce3
-[Child 12792] WARNING: pipe error: 109: file c:/builds/moz2_slave/m-rel-w32-00000000000000000000/build/src/ipc/chromium/src/chrome/common/ipc_channel_win.cc, line 346
