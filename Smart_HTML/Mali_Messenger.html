@@ -10,7 +10,7 @@
 
     <!--tabs at the top-->
     <ul class="toptabs">
-        <li><a href="Calendar.html">Calendar</a></li>
+        <li><a href="index.html">Calendar</a></li>
         <li><a href="Ads.html">Advertisements</a></li>
         <li id="active"><a>Mali Messenger</a></li>
     </ul>
@@ -18,10 +18,12 @@
     <!--all page content. has left margins for the side tabs-->
     <div class="content">
         <form action = "form_script.php" method = "POST">
-            <!--<p>Email Address: <input type="text" name = "email" size="30"></p>
-            <p>Subject: <input type="text" name="subject" size="30"></p>-->
             <p>Message: </p>
-            <p><textarea rows="10" cols="20" name="message"></textarea></p>
+            <p><textarea rows="30" cols="138" name="message"></textarea></p>
+            
+            <p>Message type:<input type="radio" name="messageType" value="Regular"/>Regular
+            <input type="radio" name="messageType" value="Urgent"/>Urgent</p>
+            
             <input type = "submit" name = "submit" value = "Submit">
     </div>
 
