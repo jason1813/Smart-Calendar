@@ -18,21 +18,47 @@
 
 <?PHP
 
+// $email="jmmorris2@mail.bradley.edu";
+// $phone="3097121597@vtext.com";
+// $subject="Calendar Message";
+// $message=$_POST['message'];
+// $messageType=$_POST['messageType'];
+// $deliveryMethod = $email;
+
+// if ($messageType == "Urgent"){ 
+//     $deliveryMethod = $phone; 
+//     $subject="";
+//     }
+
+// mail($deliveryMethod, $subject, $message);
+
+// print "Professor Mali has received your message!";
+
+$mail = new PHPMailer(true);
 $email="jmmorris2@mail.bradley.edu";
-$phone="3097121597@vtext.com";
-$subject="Calendar Message";
-$message=$_POST['message'];
-$messageType=$_POST['messageType'];
-$deliveryMethod = $email;
 
-if ($messageType == "Urgent"){ 
-    $deliveryMethod = $phone; 
-    $subject="";
-    }
+if($send_using_gmail){
+    $mail->IsSMTP(); // telling the class to use SMTP
+    $mail->SMTPAuth = true; // enable SMTP authentication
+    $mail->SMTPSecure = "ssl"; // sets the prefix to the servier
+    $mail->Host = "smtp.gmail.com"; // sets GMAIL as the SMTP server
+    $mail->Port = 465; // set the SMTP port for the GMAIL server
+    $mail->Username = "slinkymation@gmail.com"; // GMAIL username
+    $mail->Password = "2fartpoo2"; // GMAIL password
+}
 
-mail($deliveryMethod, $subject, $message);
+$mail->AddAddress($email, $name);
+$mail->SetFrom($email_from, $name_from);
+$mail->Subject = "My Subject";
+$mail->Body = "Mail contents";
 
-print "Professor Mali has received your message!";
+try{
+    $mail->Send();
+    echo "Success!";
+} catch(Exception $e){
+    //Something went bad
+    echo "Fail - " . $mail->ErrorInfo;
+}
 
 ?>
 
