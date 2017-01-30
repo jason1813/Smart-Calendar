@@ -36,9 +36,9 @@
 
 $mail = new PHPMailer(true);
 $email="jmmorris2@mail.bradley.edu";
-$name = Jason;
-$email_from = gmail.com;
-$name_from = jason;
+$name = "Jason";
+$email_from = "gmail.com";
+$name_from = "jason";
 
 if($send_using_gmail){
     $mail->IsSMTP(); // telling the class to use SMTP
