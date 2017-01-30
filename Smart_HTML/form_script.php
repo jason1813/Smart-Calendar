@@ -47,7 +47,7 @@ if($send_using_gmail){
     $mail->Host = "smtp.gmail.com"; // sets GMAIL as the SMTP server
     $mail->Port = 465; // set the SMTP port for the GMAIL server
     $mail->Username = "slinkymation@gmail.com"; // GMAIL username
-    $mail->Password = "2fartpoo2"; // GMAIL password
+    $mail->Password = "MaliPassord"; // GMAIL password
 }
 
 $mail->AddAddress($email, $name);
