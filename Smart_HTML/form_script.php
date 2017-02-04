@@ -6,7 +6,9 @@
 
 <body>
 
+
     <!--tabs at the top-->
+
     <ul class="toptabs">
         <li><a href="index.html">Calendar</a></li>
         <li><a href="Ads.html">Advertisements</a></li>
@@ -18,53 +20,46 @@
 
 <?PHP
 
-// $email="jmmorris2@mail.bradley.edu";
-// $phone="3097121597@vtext.com";
-// $subject="Calendar Message";
-// $message=$_POST['message'];
-// $messageType=$_POST['messageType'];
-// $deliveryMethod = $email;
+require "/home/jason/vendor/phpmailer/phpmailer/PHPMailerAutoload.php";
 
-// if ($messageType == "Urgent"){ 
-//     $deliveryMethod = $phone; 
-//     $subject="";
-//     }
-
-// mail($deliveryMethod, $subject, $message);
-
-// print "Professor Mali has received your message!";
-
-$mail = new PHPMailer(true);
 $email="jmmorris2@mail.bradley.edu";
-$name = "Jason";
-$email_from = "gmail.com";
-$name_from = "jason";
+$phone="3097121597@vtext.com";
 
-if($send_using_gmail){
-    $mail->IsSMTP(); // telling the class to use SMTP
-    $mail->SMTPAuth = true; // enable SMTP authentication
-    $mail->SMTPSecure = "ssl"; // sets the prefix to the servier
-    $mail->Host = "smtp.gmail.com"; // sets GMAIL as the SMTP server
-    $mail->Port = 465; // set the SMTP port for the GMAIL server
-    $mail->Username = "slinkymation@gmail.com"; // GMAIL username
-    $mail->Password = "MaliPassord"; // GMAIL password
+$mail = new PHPMailer(); // create a new object
+$mail->IsSMTP(); // enable SMTP
+$mail->SMTPDebug = 1; // debugging: 1 = errors and messages, 2 = messages only
+$mail->SMTPAuth = true; // authentication enabled
+$mail->SMTPSecure = 'ssl'; // secure transfer enabled REQUIRED for Gmail
+$mail->Host = "smtp.gmail.com";
+$mail->Port = 465; // or 587
+$mail->IsHTML(true);
+$mail->Username = "malismartcalendar@gmail.com";
+$mail->Password = "iotcalendar";
+$mail->SetFrom("example@gmail.com");
+$mail->Body = $_POST['message'];
+
+$messageType=$_POST['messageType'];
+
+if ($messageType == "Urgent"){
+$mail->AddAddress($phone);
 }
 
-$mail->AddAddress($email, $name);
-$mail->SetFrom($email_from, $name_from);
-$mail->Subject = "My Subject";
-$mail->Body = "Mail contents";
+else
 
-try{
-    $mail->Send();
-    echo "Success!";
-} catch(Exception $e){
-    //Something went bad
-    echo "Fail - " . $mail->ErrorInfo;
+{
+$mail->AddAddress($email);
+$mail->Subject = "Calendar Message";
 }
+
+ if(!$mail->Send()) {
+    echo "Mailer Error: " . $mail->ErrorInfo;
+ } else {
+    echo "Message has been sent";
+ }
 
 ?>
 
+<!--
 </div>
-</body>
+</body>-->
 </html>
