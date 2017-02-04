@@ -6,7 +6,9 @@
 
 <body>
 
+
     <!--tabs at the top-->
+
     <ul class="toptabs">
         <li><a href="index.html">Calendar</a></li>
         <li><a href="Ads.html">Advertisements</a></li>
@@ -18,24 +20,46 @@
 
 <?PHP
 
+require "/home/jason/vendor/phpmailer/phpmailer/PHPMailerAutoload.php";
+
 $email="jmmorris2@mail.bradley.edu";
 $phone="3097121597@vtext.com";
-$subject="Calendar Message";
-$message=$_POST['message'];
+
+$mail = new PHPMailer(); // create a new object
+$mail->IsSMTP(); // enable SMTP
+$mail->SMTPDebug = 1; // debugging: 1 = errors and messages, 2 = messages only
+$mail->SMTPAuth = true; // authentication enabled
+$mail->SMTPSecure = 'ssl'; // secure transfer enabled REQUIRED for Gmail
+$mail->Host = "smtp.gmail.com";
+$mail->Port = 465; // or 587
+$mail->IsHTML(true);
+$mail->Username = "malismartcalendar@gmail.com";
+$mail->Password = "iotcalendar";
+$mail->SetFrom("example@gmail.com");
+$mail->Body = $_POST['message'];
+
 $messageType=$_POST['messageType'];
-$deliveryMethod = $email;
 
-if ($messageType == "Urgent"){ 
-    $deliveryMethod = $phone; 
-    $subject="";
-    }
+if ($messageType == "Urgent"){
+$mail->AddAddress($phone);
+}
 
-mail($deliveryMethod, $subject, $message);
+else
 
-print "Professor Mali has received your message!";
+{
+$mail->AddAddress($email);
+$mail->Subject = "Calendar Message";
+}
+
+ if(!$mail->Send()) {
+    echo "Mailer Error: " . $mail->ErrorInfo;
+ } else {
+    echo "Message has been sent";
+ }
 
 ?>
 
+<!--
 </div>
-</body>
+</body>-->
 </html>
