@@ -25,9 +25,9 @@ require "/home/jason/vendor/phpmailer/phpmailer/PHPMailerAutoload.php";
 $email="jmmorris2@mail.bradley.edu";
 $phone="3097121597@vtext.com";
 
+
 $mail = new PHPMailer(); // create a new object
 $mail->IsSMTP(); // enable SMTP
-$mail->SMTPDebug = 1; // debugging: 1 = errors and messages, 2 = messages only
 $mail->SMTPAuth = true; // authentication enabled
 $mail->SMTPSecure = 'ssl'; // secure transfer enabled REQUIRED for Gmail
 $mail->Host = "smtp.gmail.com";
