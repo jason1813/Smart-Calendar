@@ -71,6 +71,11 @@ div.content p {
     color: hsl(0, 0%, 88%);
 }
 
+div.content textarea {
+    background-color: #8c8c8c;
+    font-size: 30px;
+}
+
 
 /*SlideShow styling below*/
 .mySlides {
