@@ -15,16 +15,14 @@
         <li id="active"><a>Mali Messenger</a></li>
     </ul>
 
-    <!--all page content. has left margins for the side tabs-->
+    <!--all page content-->
     <div class="content">
         <form action = "form_script.php" method = "POST">
             <p>Message: </p>
-            <p><textarea rows="20" cols="138" name="message"></textarea></p>
-            
-            <p>Message type:<input type="radio" name="messageType" value="Regular" checked />Regular
-            <input type="radio" name="messageType" value="Urgent"/>Urgent</p>
-            
-            <input type = "submit" name = "submit" value = "Submit">
+            <p><textarea rows="9" cols="67" name="message"></textarea></p>    
+            <p>Message type:&nbsp;<input type="radio" name="messageType" value="Regular" checked />&nbsp;Regular (email)&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+            <input type="radio" name="messageType" value="Urgent"/>&nbsp;Urgent (text)
+            <input type = "submit" name = "send button" value = "SEND"></p>
     </div>
 
 </body>
