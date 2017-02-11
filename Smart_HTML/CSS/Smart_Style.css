@@ -52,6 +52,8 @@ div.content {
     top: 55px;
     z-index: -1;
     overflow: auto;
+    color: hsl(0, 0%, 88%);
+    font-size: 30px;
 }
 
 /*h2 content style*/
@@ -68,12 +70,25 @@ div.content h3 {
 
 /*paragraph content style*/
 div.content p {
-    color: hsl(0, 0%, 88%);
+
 }
 
+/*paragraph content style*/
 div.content textarea {
     background-color: #8c8c8c;
     font-size: 30px;
+}
+
+/*radio button content style*/
+div.content input[type='radio'] {
+    transform: scale(2);
+}
+
+/*submit button content style*/
+div.content input[type='submit'] {
+    width: 100px;
+    height: 40px;
+    float: right;
 }
 
 
