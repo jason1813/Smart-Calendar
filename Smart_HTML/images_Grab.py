@@ -11,7 +11,7 @@ for files in types:
 # called htmlString
 os.chdir("..")
 with open('Ads.html', 'r') as myfile:
-    htmlString=myfile.read().replace('\n', '')
+    htmlString=myfile.read()
 
 # split the string in between the '<!--images-->'
 picString = htmlString.split("<!--images-->")
@@ -23,7 +23,8 @@ postFName = '" style="width:96%">'
 # go through and chang newText to have the new files
 newText = ''
 for x in range(0, len(files_grabbed)):
-    newText += preFName + files_grabbed[x] + postFName
+    newText += '\n\t\t\t' + preFName + files_grabbed[x] + postFName
+newText += '\n\t\t'
 
 # replace the old text with the new for the new images
 htmlString = htmlString.replace(picString[1], newText)
