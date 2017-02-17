@@ -1,7 +1,6 @@
 # grab all picture file names in images folder
 # files_grabbed = array of image file names
 import glob, os
-os.chdir("images")
 types = ('*.jpg', '*.png', '*.gif')
 files_grabbed = []
 for files in types:
