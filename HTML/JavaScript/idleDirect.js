@@ -1,18 +1,22 @@
-// idleTimer() takes an optional argument that defines the idle timeout
-// timeout is in milliseconds; defaults to 30000
-$.idleTimer(4000);
+var IDLE_TIMEOUT = 30; //seconds
+var _idleSecondsCounter = 0;
+document.onclick = function() {
+    _idleSecondsCounter = 0;
+};
+document.onmousemove = function() {
+    _idleSecondsCounter = 0;
+};
+document.onkeypress = function() {
+    _idleSecondsCounter = 0;
+};
+window.setInterval(CheckIdleTime, 1000);
 
-window.location.replace("http://stackoverflow.com");
-
-$(document).bind("idle.idleTimer", function(){
-    window.location.replace("http://stackoverflow.com");
- // function you want to fire when the user goes idle
-});
-
-
-$(document).bind("active.idleTimer", function(){
- // function you want to fire when the user becomes active again
-});
-
-// pass the string 'destroy' to stop the timer
-$.idleTimer('destroy');
+function CheckIdleTime() {
+    _idleSecondsCounter++;
+    var oPanel = document.getElementById("SecondsUntilExpire");
+    if (oPanel)
+        oPanel.innerHTML = (IDLE_TIMEOUT - _idleSecondsCounter) + "";
+    if (_idleSecondsCounter >= IDLE_TIMEOUT) {
+        window.location.replace("index.html");
+    }
+}
