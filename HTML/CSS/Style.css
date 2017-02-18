@@ -69,11 +69,6 @@ div.content h3 {
 }
 
 /*paragraph content style*/
-div.content p {
-
-}
-
-/*paragraph content style*/
 div.content textarea {
     background-color: #8c8c8c;
     font-size: 30px;
@@ -125,4 +120,10 @@ animation:fade 1s;
         100% {
                 opacity:1;
         }
+}
+
+
+/*removing "+Google Calendar" button*/
+div.subscribe-image{
+    display: none;
 }

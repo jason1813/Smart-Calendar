@@ -3,7 +3,7 @@
 
 <head>
     <title>Mali Messenger</title>
-    <link rel="stylesheet" type="text/css" href="./CSS/Smart_Style.css">
+    <link rel="stylesheet" type="text/css" href="./CSS/Style.css">
 </head>
 
 <body>
@@ -17,7 +17,7 @@
 
     <!--all page content-->
     <div class="content">
-        <form action = "form_script.php" method = "POST">
+        <form action = "send_Message.php" method = "POST">
             <p>Message: </p>
             <p><textarea rows="9" cols="67" name="message"></textarea></p>    
             <p>Message type:&nbsp;<input type="radio" name="messageType" value="Regular" checked />&nbsp;Regular (email)&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
@@ -25,6 +25,8 @@
             <input type = "submit" name = "send button" value = "SEND"></p>
     </div>
 
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+    <script src="./JavaScript/idleDirect.js"></script>
 </body>
 
 </html>

@@ -1,7 +1,7 @@
 <html>
 <head>
     <title>Mali Messenger</title>
-    <link rel="stylesheet" type="text/css" href="./CSS/Smart_Style.css">
+    <link rel="stylesheet" type="text/css" href="./CSS/Style.css">
 </head>
 
 <body>
