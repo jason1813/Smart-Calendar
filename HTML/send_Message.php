@@ -13,6 +13,7 @@
         <li><a href="index.html">Calendar</a></li>
         <li><a href="Ads.html">Advertisements</a></li>
         <li id="active"><a>Mali Messenger</a></li>
+        <li><a href="Announcements.html">Announcements</a></li>
     </ul>
 
     <!--all page content. has left margins for the side tabs-->
@@ -59,7 +60,9 @@ $mail->Subject = "Calendar Message";
 
 ?>
 
-<!--
 </div>
-</body>-->
+
+    <script src="./JavaScript/idleDirect.js"></script>
+
+</body>
 </html>
