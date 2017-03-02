@@ -1,4 +1,4 @@
-var IDLE_TIMEOUT = 30; //seconds
+var IDLE_TIMEOUT = 90; //seconds
 var _idleSecondsCounter = 0;
 document.onclick = function() {
     _idleSecondsCounter = 0;
@@ -17,6 +17,6 @@ function CheckIdleTime() {
     if (oPanel)
         oPanel.innerHTML = (IDLE_TIMEOUT - _idleSecondsCounter) + "";
     if (_idleSecondsCounter >= IDLE_TIMEOUT) {
-        window.location.replace("index.html");
+        window.location.replace("Ads.html");
     }
 }
