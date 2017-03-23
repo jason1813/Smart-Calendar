@@ -1,6 +1,5 @@
 import os, sys
 
-
 option = str(sys.argv[1:2])
 
 if(option == ‘[\’--start\’]’):
@@ -12,7 +11,12 @@ if(option == ‘[\’--start\’]’):
 	os.system(“python ./pins.py &”)
 	#download ads/announcements?
 
-
 elif(option == ‘[\’--stop\’]’):
 	print ‘stop’
 	os.system(“kill $(ps -eF | grep pins.py | grep -v grep | awk ‘{print $2}’)”)
+
+elif(option == ‘[\’--monitor-on\’]’):
+	#i forgot what the command was
+
+elif(option == ‘[\’--monitor-off\’]’):
+	#i also forgot this command too
