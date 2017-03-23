@@ -13,14 +13,14 @@ os.system("echo 27 > /sys/class/gpio/export")
 os.system("echo in > /sys/class/gpio/gpio27/direction")
 
 state = 0
-#timeout = 0
+timeout = 0
 caltimer = 0
 doortimer = 0
-doorm = 0
-calm = 0
-L_visited = 0
-R_visited = 0
 first = 0
+llast = 0
+rlast = 0
+cal_on = 0
+door_on = 0
 
 while(1):
 		time.sleep(1)
@@ -31,59 +31,51 @@ while(1):
 		R = int(file.read())
 		file.close()
 		
-		if R == 1 && doortimer < 5:
-			doortimer = doortimer+1
-		elif R == 1:
-			print 'doorstop'
-		else
-			doortimer = 0
-		
-		if L == 1 && caltimer < 5:
-			caltimer = caltimer+1
-		elif R == 1:
-			print 'calstop'
-		else
-			caltimer = 0
-		
 		if state == 0: #idle
 			print 'idle'
 			if L == 1 && R == 1:
-				state = 5 #error!
+				state = 1
+				first = -1 #did not expect both sensors to turn on at same time
 			elif L == 1:
 				state = 1
 				first = 0
+				llast = 1
+				rlast = 0
 			elif R == 1:
-				state = 2
+				state = 1
 				first = 1
+				llast = 0
+				rlast = 1
+			else:
+				timeout = timeout + 1
 		
-		elif state == 1: #LHold
+		elif state == 1: #activity
 			print 'L Hold'
 			L_visited = 1
 			if L == 0 && R == 0:
 				state = 0
-				if first == 0:
-					print 'Came L left L'
-				else
-					print 'Came R left L'
-			elif L == 0 && R == 1:
-				state = 2
+				#create timestamp
+			if L == 1:
+				caltimer = caltimer + 1
+				llast = 1
+			else:
+				caltimer = 0
+				llast = 0
+
+			if caltimer >= 4:
+				caltimer = 4
+				cal_on = 1
 			
-		elif state == 2: #RHold
-			print 'R Hold'
-			R_visited = 1
-			if L == 0 && R == 0:
-				state = 0
-				if first == 0:
-					print 'Came L left R'
-				else
-					print 'Came R left R'
-			elif L == 1 && R == 0:
-				state = 1
-			
-		elif state == 5: #wait
-			print 'Wait'
-			if L == 0 && R == 0:
-				state = 0
+			if R == 1:
+				doortimer = doortimer + 1
+				rlast = 1
+			else:
+				doortimer = 0
+				rlast = 0
+
+			if doortimer >= 6:
+				doortimer = 6
+				door_on = 1
 		
 		
 		
