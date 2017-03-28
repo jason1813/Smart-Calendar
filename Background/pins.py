@@ -1,4 +1,4 @@
-import os, time, atexit, pwd, datetime
+import os, time, atexit, pwd, time
 
 def closepin():
 		os.system("echo 17 > /sys/class/gpio/unexport")
@@ -9,27 +9,27 @@ atexit.register(closepin)
 def timestamp(first, llast, rlast, door_on, cal_on):
 	stamp = 'Detected activity from '
 	if(first == 0):
-		stamp = stamp, 'left to '
-	elif(first == 1)
-		stamp = stamp, 'right to '
-	else
-		stamp = stamp, 'IDK to '
-	
-	if(llast == 1 && rlast == 0):
-		stamp = stamp, 'left at '
-	elif(llast == 0 && rlast == 1):
-		stamp = stamp, 'right at '
+		stamp = stamp + 'left to '
+	elif(first == 1):
+		stamp = stamp + 'right to '
 	else:
-		stamp = stamp, 'IDK at '
+		stamp = stamp + 'IDK to '
 	
-	stamp = stamp, datetime.datetime.now(), '.'
+	if(llast == 1 and rlast == 0):
+		stamp = stamp + 'left at '
+	elif(llast == 0 and rlast == 1):
+		stamp = stamp + 'right at '
+	else:
+		stamp = stamp + 'IDK at '
 	
-	if(door_on == 1 && cal_on == 1):
-		stamp = stamp, ' They stopped at the door and calendar.'
-	elif(door_on == 1)
-		stamp = stamp, ' They stopped at the door.'
-	elif(cal_on == 1)
-		stamp = stamp, ' They stopped at the calendar.'
+	stamp = stamp + time.asctime() + '.'
+	
+	if(door_on == 1 and cal_on == 1):
+		stamp = stamp + ' They stopped at the door and calendar.'
+	elif(door_on == 1):
+		stamp = stamp + ' They stopped at the door.'
+	elif(cal_on == 1):
+		stamp = stamp + ' They stopped at the calendar.'
 	
 	print stamp
 	
@@ -48,7 +48,7 @@ llast = 0
 rlast = 0
 calstop = 0
 doorstop = 0
-cal_is_on = 0
+cal_is_on = 1
 
 while(1):
 	file = open("/sys/class/gpio/gpio17/value", "r")
@@ -60,23 +60,28 @@ while(1):
 	
 	if state == 0: #idle
 		print 'idle'
-		if L == 1 && R == 1:
+		if(L == 1 and R == 1):
 			state = 1
 			first = -1 #did not expect both sensors to turn on at same time
+			llast = 1
+			rlast = 1
 			caltimer = 1
 			doortimer = 1
-		elif L == 1:
+			timeout = 0
+		elif(L == 1):
 			state = 1
 			first = 0
 			llast = 1
 			rlast = 0
 			caltimer = 1
+			doortimer = 0
 			timeout = 0
-		elif R == 1:
+		elif(R == 1):
 			state = 1
 			first = 1
 			llast = 0
 			rlast = 1
+			caltimer = 0
 			doortimer = 1
 			timeout = 0
 		else:
@@ -85,7 +90,7 @@ while(1):
 	elif state == 1: #activity
 		print 'activity'
 		L_visited = 1
-		if L == 0 && R == 0:
+		if(L == 0 and R == 0):
 			state = 0
 			timestamp(first, llast, rlast, doorstop, calstop)
 			calstop = 0
@@ -114,13 +119,15 @@ while(1):
 			doorstop = 1
 	
 	
-	if(timeout < 900 && cal_is_on == 0):
-		os.system("python startup.py --monitor-on")
+	if(timeout < 900 and cal_is_on == 0):
+		os.system("python startup.py --monitor-on &")
+		print 'turn on'		
 		cal_is_on = 1
 	elif(timeout >= 900):
 		timeout = 900
 		if(cal_is_on == 1):
-			os.system("python startup.py --monitor-off")
+			os.system("python startup.py --monitor-off &")
+			print 'turn off'
 			cal_is_on = 0
 	
 	time.sleep(1)
