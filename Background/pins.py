@@ -1,10 +1,6 @@
-import os, time, atexit, pwd, time
+import os, time, pwd, time
 
-def closepin(): #on exit function, shut off pins
-		os.system("echo 17 > /sys/class/gpio/unexport")
-		os.system("echo 27 > /sys/class/gpio/unexport")
-
-atexit.register(closepin)
+do_monitor = 0;
 
 def timestamp(first, llast, rlast, door_on, cal_on):
 	stamp = 'Detected activity from '
@@ -31,13 +27,11 @@ def timestamp(first, llast, rlast, door_on, cal_on):
 		stamp = stamp + ' They stopped at the door.'
 	elif(cal_on == 1):
 		stamp = stamp + ' They stopped at the calendar.'
-	
-	print stamp
-	
-os.system("echo 17 > /sys/class/gpio/export") #turn on pins
-os.system("echo in > /sys/class/gpio/gpio17/direction")
-os.system("echo 27 > /sys/class/gpio/export")
-os.system("echo in > /sys/class/gpio/gpio27/direction")
+
+	stamp = stamp + '\n'
+	file = open('/var/www/Smart-Calendar/temporary/stamp.txt', 'a')
+	file.write(stamp)
+	file.close()
 
 state = 0 #0 = idle state, 1 = active state
 timeout = 0 #counts seconds of inactivity
@@ -59,8 +53,8 @@ while(1):
 	R = int(file.read())
 	file.close()
 	
-	if state == 0: #idle state
-		print 'idle'
+	if state == 0: #idle
+		#print 'idle'
 		if(L == 1 and R == 1): #left and right activity
 			state = 1
 			first = -1 #did not expect both sensors to turn on at same time
@@ -87,9 +81,9 @@ while(1):
 			timeout = 0
 		else: #no activity
 			timeout = timeout + 1
-	
-	elif state == 1: #activity state
-		print 'activity'
+	elif state == 1: #activity
+		#print 'activity'
+		L_visited = 1
 		if(L == 0 and R == 0): #no activity
 			state = 0
 			timestamp(first, llast, rlast, doorstop, calstop)
@@ -118,6 +112,17 @@ while(1):
 			doortimer = 6
 			doorstop = 1
 	
+	if(do_monitor == 1):
+		if(timeout < 900 and cal_is_on == 0):
+			#os.system("python startup.py --monitor-on &")
+			#print 'turn on'		
+			cal_is_on = 1
+		elif(timeout >= 900):
+			timeout = 900
+			if(cal_is_on == 1):
+				os.system("python startup.py --monitor-off &")
+				#print 'turn off'
+				cal_is_on = 0
 	
 	if(timeout < 900 and cal_is_on == 0): #turn on calendar during times of activity
 		os.system("python startup.py --monitor-on &")
