@@ -13,9 +13,7 @@ window.setInterval(CheckIdleTime, 1000);
 
 function CheckIdleTime() {
     _idleSecondsCounter++;
-    var oPanel = document.getElementById("SecondsUntilExpire");
-    if (oPanel)
-        oPanel.innerHTML = (IDLE_TIMEOUT - _idleSecondsCounter) + "";
+
     if (_idleSecondsCounter >= IDLE_TIMEOUT) {
         window.location.replace("Ads.html");
     }
