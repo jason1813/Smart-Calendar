@@ -1,6 +1,6 @@
 import os, time, pwd, time
 
-do_monitor = 0;
+do_monitor = 1;
 
 def timestamp(first, llast, rlast, door_on, cal_on):
 	stamp = 'Detected activity from '
@@ -29,7 +29,7 @@ def timestamp(first, llast, rlast, door_on, cal_on):
 		stamp = stamp + ' They stopped at the calendar.'
 
 	stamp = stamp + '\n'
-	file = open('/var/www/Smart-Calendar/temporary/stamp.txt', 'a')
+	file = open('/var/www/Smart-Calendar/HTML/temporary/stamp.txt', 'a')
 	file.write(stamp)
 	file.close()
 
@@ -114,7 +114,7 @@ while(1):
 	
 	if(do_monitor == 1):
 		if(timeout < 900 and cal_is_on == 0):
-			#os.system("python startup.py --monitor-on &")
+			os.system("python startup.py --monitor-on &")
 			#print 'turn on'		
 			cal_is_on = 1
 		elif(timeout >= 900):
@@ -124,24 +124,13 @@ while(1):
 				#print 'turn off'
 				cal_is_on = 0
 	
-	if(timeout < 900 and cal_is_on == 0): #turn on calendar during times of activity
-		os.system("python startup.py --monitor-on &")
-		print 'turn on'
-		cal_is_on = 1
-	elif(timeout >= 900): #after 15 minutes of inactivity, turn off monitor
-		timeout = 900
-		if(cal_is_on == 1):
-			os.system("python startup.py --monitor-off &")
-			print 'turn off'
-			cal_is_on = 0
-	
 	if(timeout < 90 and cal_is_active == 0): #calendar becomes active
-		file = open('var/www/Smart-Calendar/HTML/message/message.txt', 'w')
-		file.write('a')
+		file = open('var/www/Smart-Calendar/HTML/temporary/message.txt', 'w')
+		file.write('b')
 		file.close()
 		cal_is_active = 1
 	elif(timeout >= 90 and cal_is_active == 1): #calendar becomes idle
-		file = open('var/www/Smart-Calendar/HTML/message/message.txt', 'w')
+		file = open('var/www/Smart-Calendar/HTML/temporary/message.txt', 'w')
 		file.write('i')
 		file.close()
 		cal_is_active = 0

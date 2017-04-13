@@ -1,15 +1,15 @@
-import os, sys, serial
+import os, sys, serial, time
 
 option = str(sys.argv[1:2])
 
 if(option == '[\'--start\']'):
-	print 'start'
-
-	if(not os.path.isfile('/var/www/Smart-Calendar/temporary/message.txt')):
-		file = open('/var/www/Smart-Calendar/temporary/message.txt', 'w+')
+	#print 'start'
+	if(not os.path.isfile('/var/www/Smart-Calendar/HTML/temporary/message.txt')):
+		file = open('/var/www/Smart-Calendar/HTML/temporary/message.txt', 'w+')
 		file.close()
-	if(not os.path.isfile('/var/www/Smart-Calendar/temporary/stamp.txt')):
-		file = open('/var/www/Smart-Calendar/temporary/stamp.txt', 'w+')
+	if(not os.path.isfile('/var/www/Smart-Calendar/HTML/temporary/stamp.txt')):
+		file = open('/var/www/Smart-Calendar/HTML/temporary/stamp.txt', 'w+')
+		file.write('File Created ' + time.asctime() + '\n')
 		file.close()
 	os.system("echo 17 > /sys/class/gpio/export")
 	os.system("echo in > /sys/class/gpio/gpio17/direction")
@@ -19,10 +19,17 @@ if(option == '[\'--start\']'):
 	#download ads/announcements?
 
 elif(option == '[\'--stop\']'):
-	print 'stop'
+	#print 'stop'
 	os.system("kill $(ps -eF | grep pins.py | grep -v grep | awk '{print $2}')")
 	os.system("echo 17 > /sys/class/gpio/unexport")
 	os.system("echo 27 > /sys/class/gpio/unexport")
+	timevar = time.asctime()
+	file = open('/var/www/Smart-Calendar/HTML/temporary/stamp.txt', 'a+')
+	file.write('File Closed ' + timevar + '\n')
+	file.close()
+	timevar = timevar[4:7] + '_' + timevar[8:10] + '_' + timevar[20:] + '_stamp.txt'
+	os.rename("/var/www/Smart-Calendar/HTML/temporary/stamp.txt", "/var/www/Smart-Calendar/HTML/temporary/" + timevar)
+	#email file
 
 elif(option == '[\'--monitor-on\']'):
 	os.system("tvservice -p; chvt 6; chvt 7")
@@ -35,3 +42,4 @@ elif(option == '[\'--monitor-off\']'):
 	ser = serial.Serial('/dev/ttyUSB0', 9600, timeout=1)
 	code = 'A00100A1'
 	ser.write(code.decode('HEX'))
+	
