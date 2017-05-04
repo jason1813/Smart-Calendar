@@ -21,6 +21,7 @@ if(option == '[\'--start\']'):
 
 elif(option == '[\'--stop\']'):
 	os.system("kill $(ps -eF | grep pins.py | grep -v grep | awk '{print $2}')") #end pins.py
+	os.system("kill $(ps -eF | grep firefox | grep -v grep | awk '{print $2}')") #end firefox
 	#turn off pins
 	os.system("echo 17 > /sys/class/gpio/unexport")
 	os.system("echo 27 > /sys/class/gpio/unexport")
