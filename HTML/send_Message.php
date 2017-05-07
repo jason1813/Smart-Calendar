@@ -23,7 +23,7 @@
 
 require "/home/jason/vendor/phpmailer/phpmailer/PHPMailerAutoload.php";
 
-$email="jmmorris2@mail.bradley.edu";
+$email="olekmali@fsmail.bradley.edu";
 $phone="3097121597@vtext.com";
 
 
