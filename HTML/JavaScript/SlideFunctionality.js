@@ -9,11 +9,11 @@ function carousel()
         x[i].style.display = "none";
     }
     myIndex++;
-    if (myIndex > x.length)
+    if (myIndex >= x.length)
     {
-        myIndex = 1;
+        myIndex = 0;
     }
-    x[myIndex - 1].style.display = "block";
+    x[myIndex].style.display = "block";
     setTimeout(carousel, 15000); // Change image every 15 seconds
 }
 
