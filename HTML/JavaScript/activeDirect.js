@@ -6,7 +6,8 @@ document.onclick = function()
     _idleSecondsCounter = 0;
 };
 
-document.onmousemove = function() {
+document.onmousemove = function()
+{
     _idleSecondsCounter = 0;
 };
 
@@ -39,10 +40,10 @@ function getText()
 
 function CheckIdleTime() 
 {
-    _idleSecondsCounter++;
-    
-    if (_idleSecondsCounter >= IDLE_TIMEOUT) 
+    if (_idleSecondsCounter < IDLE_TIMEOUT)
     {
-	getText();
+        _idleSecondsCounter++;
+    } else {
+        getText();
     }
 }
