@@ -12,9 +12,9 @@ document.onkeypress = function() {
 window.setInterval(CheckIdleTime, 1000);
 
 function CheckIdleTime() {
-    _idleSecondsCounter++;
-
-    if (_idleSecondsCounter >= IDLE_TIMEOUT) {
+    if ( _idleSecondsCounter < IDLE_TIMEOUT) {
+        _idleSecondsCounter++;
+    } else {
         window.location.replace("Ads.html");
     }
 }
