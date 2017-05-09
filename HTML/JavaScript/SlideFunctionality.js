@@ -1,4 +1,6 @@
-var myIndex = 0;
+var slideIndex = 0;
+
+window.setInterval(carousel, 20000); // Change image every 20 seconds
 
 function carousel()
 {
@@ -8,13 +10,11 @@ function carousel()
     {
         x[i].style.display = "none";
     }
-    myIndex++;
-    if (myIndex >= x.length)
+    slideIndex++;
+    if (slideIndex >= x.length)
     {
-        myIndex = 0;
+        slideIndex = 0;
     }
-    x[myIndex].style.display = "block";
-    setTimeout(carousel, 20000); // Change image every 20 seconds
+    x[slideIndex].style.display = "block";
 }
 
-carousel();
