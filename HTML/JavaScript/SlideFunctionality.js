@@ -18,3 +18,4 @@ function carousel()
     x[slideIndex].style.display = "block";
 }
 
+carousel();
