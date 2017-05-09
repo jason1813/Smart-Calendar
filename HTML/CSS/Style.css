@@ -90,11 +90,11 @@ div.content input[type='submit'] {
 /*SlideShow styling below*/
 .mySlides {
 position: fixed;
-top: 8%;
+top: 2%;
 left: 2%;
 right: 2%;
 
-  display:none;
+display:none;
 -webkit-animation:fade 2s;
 -moz-animation:fade 2s;
 animation:fade 2s;
