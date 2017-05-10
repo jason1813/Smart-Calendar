@@ -1,7 +1,7 @@
 <html>
 <head>
     <title>Mali Messenger</title>
-    <link rel="stylesheet" type="text/css" href="./CSS/Style.css">
+    <link rel="stylesheet" type="text/css" href="./css/style.css">
 </head>
 
 <body>
@@ -62,7 +62,7 @@ $mail->Subject = "Calendar Message";
 
 </div>
 
-    <script src="./JavaScript/idleDirect.js"></script>
+    <script src="./js/idleDirect.js"></script>
 
 </body>
 </html>
