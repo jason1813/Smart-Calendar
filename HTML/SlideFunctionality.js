@@ -1,8 +1,6 @@
 var slideIndex = 0;
 
-window.setInterval(carousel, 20000); // Change image every 20 seconds
-
-function carousel()
+function DisplayNext()
 {
     var i;
     var x = window.document.getElementsByClassName("mySlides");
@@ -19,4 +17,9 @@ function carousel()
     // window.alert(slideIndex);
 }
 
-carousel();
+function StartShow()
+{
+    DisplayNext();
+    window.setInterval(DisplayNext, 20000); // Change image every 20 seconds
+
+}
