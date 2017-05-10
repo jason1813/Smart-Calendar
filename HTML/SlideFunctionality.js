@@ -16,7 +16,7 @@ function carousel()
         slideIndex = 0;
     }
     x[slideIndex].style.display = "block";
-    window.alert(slideIndex);
+    // window.alert(slideIndex);
 }
 
 carousel();
