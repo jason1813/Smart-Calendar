@@ -15,11 +15,10 @@ function DisplayNext()
     }
     x[slideIndex].style.display = "block";
     // window.alert(slideIndex);
+    setTimeout(DisplayNext, 20000); // Change image every 20 seconds
 }
 
 function StartShow()
 {
     DisplayNext();
-    window.setInterval(DisplayNext, 20000); // Change image every 20 seconds
-
 }
