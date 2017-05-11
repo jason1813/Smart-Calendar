@@ -16,8 +16,6 @@ document.onkeypress = function()
     _idleSecondsCounter = 0;
 }
 
-window.setInterval(CheckIdleTime, 1000);
-
 function getText()
 {
     var textrequest = new XMLHttpRequest();
@@ -47,4 +45,9 @@ function CheckIdleTime()
     } else {
         getText();
     }
+}
+
+function startTimeout()
+{
+    window.setInterval(CheckIdleTime, 1000);
 }
