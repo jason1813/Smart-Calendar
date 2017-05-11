@@ -47,4 +47,3 @@ elif(option == '[\'--monitor-off\']'):
 	ser = serial.Serial('/dev/ttyUSB0', 9600, timeout=1)
 	code = 'A00100A1'
 	ser.write(code.decode('HEX'))
-	

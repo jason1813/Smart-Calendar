@@ -16,18 +16,18 @@ with open('Ads.html', 'r') as myfile:
 picString = htmlString.split("<!--images-->")
 
 # what goes before and after file names in Ads.html
-preFName = '<img class="mySlides" src="./images/'
-postFName = '" style="width:96%">'
+preFName = '<img class="mySlides" src="./images/';
+postFName = '" style="width:96%">';
 
 # go through and chang newText to have the new files
-newText = ''
+newText = '';
 for x in range(0, len(files_grabbed)):
-    newText += '\n\t\t\t' + preFName + files_grabbed[x] + postFName
-newText += '\n\t\t'
+    newText += '\n            ' + preFName + files_grabbed[x] + postFName;
+newText += '\n        ';
 
 # replace the old text with the new for the new images
-htmlString = htmlString.replace(picString[1], newText)
+htmlString = htmlString.replace(picString[1], newText);
 
 # write the htmlString into the Ads.html file
-writeFile = open("Ads.html", "w")
-writeFile.write(htmlString)
+writeFile = open("Ads.html", "w");
+writeFile.write(htmlString);

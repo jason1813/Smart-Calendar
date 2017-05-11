@@ -1,12 +1,13 @@
 <!DOCTYPE html>
 <html>
-
 <head>
     <title>Smart Calendar</title>
-    <link rel="stylesheet" type="text/css" href="./CSS/Style.css">
+    <meta charset="UTF-8">
+    <meta http-equiv="Pragma" content="no-cache">
+    <link rel="stylesheet" type="text/css" href="style.css">
+    <script type="text/JavaScript" src="idleDirect.js"></script>
 </head>
-
-<body>
+<body onload="startTimeout();">
     <!--tabs at the top-->
     <ul class="toptabs">
         <li id="active"><a>Calendar</a></li>
@@ -21,7 +22,5 @@
             style="border-width:0" width="1240" height="700" frameborder="0" scrolling="no"></iframe>
     </div>
 
-    <script src="./JavaScript/idleDirect.js"></script>
 </body>
-
 </html>

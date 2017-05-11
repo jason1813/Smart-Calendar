@@ -4,17 +4,17 @@ var _idleSecondsCounter = 0;
 document.onclick = function() 
 {
     _idleSecondsCounter = 0;
-};
+}
 
-document.onmousemove = function() {
+document.onmousemove = function()
+{
     _idleSecondsCounter = 0;
-};
+}
 
 document.onkeypress = function() 
 {
     _idleSecondsCounter = 0;
-};
-window.setInterval(CheckIdleTime, 1000);
+}
 
 function getText()
 {
@@ -39,10 +39,15 @@ function getText()
 
 function CheckIdleTime() 
 {
-    _idleSecondsCounter++;
-    
-    if (_idleSecondsCounter >= IDLE_TIMEOUT) 
+    if (_idleSecondsCounter < IDLE_TIMEOUT)
     {
-	getText();
+        _idleSecondsCounter++;
+    } else {
+        getText();
     }
+}
+
+function startTimeout()
+{
+    window.setInterval(CheckIdleTime, 1000);
 }
